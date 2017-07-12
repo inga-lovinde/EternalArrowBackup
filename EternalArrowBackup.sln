@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A79A4872-4289-4429-B616-3E8CEC71ECB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EternalArrowBackup.Contracts", "Source\Contracts\EternalArrowBackup.Contracts.csproj", "{9A363462-23E2-49FB-A65C-7B1CA1400046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Contracts", "Source\Contracts\EternalArrowBackup.Contracts.csproj", "{9A363462-23E2-49FB-A65C-7B1CA1400046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
