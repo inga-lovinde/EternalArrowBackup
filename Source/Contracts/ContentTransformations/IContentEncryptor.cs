@@ -1,4 +1,4 @@
-﻿namespace EternalArrowBackup.Contracts.Encryption
+﻿namespace EternalArrowBackup.Contracts.ContentTransformations
 {
     using System.Threading.Tasks;
 
@@ -6,6 +6,6 @@
     {
         Task<byte[]> Encrypt(byte[] originalData);
 
-        Task<byte[]> Decrypt(byte[] encryptedData);
+        Task<IDecryptionResult> Decrypt(byte[] encryptedData);
     }
 }
