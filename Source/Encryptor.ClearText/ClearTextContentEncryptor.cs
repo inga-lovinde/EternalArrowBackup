@@ -1,0 +1,70 @@
+﻿namespace EternalArrowBackup.Encryptor.ClearText
+{
+    using System;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Contracts.ContentTransformations;
+
+    public class ClearTextContentEncryptor : IContentEncryptor
+    {
+        public ClearTextContentEncryptor(IContentHasher hasher)
+        {
+            this.Hasher = hasher;
+        }
+
+        private IContentHasher Hasher { get; }
+
+        public async Task<IDecryptionResult> Decrypt(byte[] encryptedData)
+        {
+            var hashLength = encryptedData[encryptedData.Length - 1];
+
+            var originalData = new byte[encryptedData.Length - hashLength - 1];
+            var hashBytes = new byte[hashLength];
+
+            Buffer.BlockCopy(encryptedData, 0, originalData, 0, originalData.Length);
+            Buffer.BlockCopy(encryptedData, originalData.Length, hashBytes, 0, hashBytes.Length);
+
+            var expectedHash = Encoding.UTF8.GetString(hashBytes);
+            var actualHash = await this.Hasher.ComputeHash(originalData);
+
+            if (expectedHash != actualHash)
+            {
+                return new FailedDecryptionResult();
+            }
+
+            return new SuccessfulDecryptionResult(originalData);
+        }
+
+        public async Task<byte[]> Encrypt(byte[] originalData)
+        {
+            var hash = await this.Hasher.ComputeHash(originalData);
+            var hashBytes = Encoding.UTF8.GetBytes(hash);
+            if (hashBytes.Length >= 256)
+            {
+                throw new Exception("Hash should be shorter than 256 bytes");
+            }
+
+            var result = new byte[originalData.Length + hashBytes.Length + 1];
+            Buffer.BlockCopy(originalData, 0, result, 0, originalData.Length);
+            Buffer.BlockCopy(hashBytes, 0, result, originalData.Length, hashBytes.Length);
+            result[result.Length - 1] = (byte)hashBytes.Length;
+            return result;
+        }
+
+        private class FailedDecryptionResult : IDecryptionResult
+        {
+            public bool IsSuccessful => false;
+
+            public byte[] Data => throw new NotImplementedException();
+        }
+
+        private class SuccessfulDecryptionResult : IDecryptionResult
+        {
+            public SuccessfulDecryptionResult(byte[] data) => this.Data = data;
+
+            public bool IsSuccessful => true;
+
+            public byte[] Data { get; }
+        }
+    }
+}

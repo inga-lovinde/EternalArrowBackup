@@ -7,6 +7,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A79A48
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Contracts", "Source\Contracts\EternalArrowBackup.Contracts.csproj", "{9A363462-23E2-49FB-A65C-7B1CA1400046}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{884B8E01-303A-40CF-8884-D62115F98683}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Hasher.SHA1", "Source\Hasher.SHA1\EternalArrowBackup.Hasher.SHA1.csproj", "{623151DA-A4E0-4A7F-B600-A51ABCDE7038}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Encryptor.ClearText", "Source\Encryptor.ClearText\EternalArrowBackup.Encryptor.ClearText.csproj", "{E8D0BBF5-8DA6-49FA-AC86-9F766C203D99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EternalArrowBackup.Hasher.SHA1.Tests", "Tests\Hasher.SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj", "{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Encryptor.ClearText.Tests", "Tests\Encryptor.ClearText\EternalArrowBackup.Encryptor.ClearText.Tests.csproj", "{0F91FC45-54B3-4BC0-BB3D-83E963EBD00D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +27,31 @@ Global
 		{9A363462-23E2-49FB-A65C-7B1CA1400046}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A363462-23E2-49FB-A65C-7B1CA1400046}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A363462-23E2-49FB-A65C-7B1CA1400046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{623151DA-A4E0-4A7F-B600-A51ABCDE7038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{623151DA-A4E0-4A7F-B600-A51ABCDE7038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{623151DA-A4E0-4A7F-B600-A51ABCDE7038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{623151DA-A4E0-4A7F-B600-A51ABCDE7038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8D0BBF5-8DA6-49FA-AC86-9F766C203D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8D0BBF5-8DA6-49FA-AC86-9F766C203D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8D0BBF5-8DA6-49FA-AC86-9F766C203D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8D0BBF5-8DA6-49FA-AC86-9F766C203D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F91FC45-54B3-4BC0-BB3D-83E963EBD00D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F91FC45-54B3-4BC0-BB3D-83E963EBD00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F91FC45-54B3-4BC0-BB3D-83E963EBD00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F91FC45-54B3-4BC0-BB3D-83E963EBD00D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9A363462-23E2-49FB-A65C-7B1CA1400046} = {A79A4872-4289-4429-B616-3E8CEC71ECB8}
+		{623151DA-A4E0-4A7F-B600-A51ABCDE7038} = {A79A4872-4289-4429-B616-3E8CEC71ECB8}
+		{E8D0BBF5-8DA6-49FA-AC86-9F766C203D99} = {A79A4872-4289-4429-B616-3E8CEC71ECB8}
+		{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC} = {884B8E01-303A-40CF-8884-D62115F98683}
+		{0F91FC45-54B3-4BC0-BB3D-83E963EBD00D} = {884B8E01-303A-40CF-8884-D62115F98683}
 	EndGlobalSection
 EndGlobal
