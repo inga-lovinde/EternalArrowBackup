@@ -1,0 +1,9 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+test_script:
+- cmd: dotnet test tests\Encryptor.ClearText\EternalArrowBackup.Encryptor.ClearText.Tests.csproj
+- cmd: dotnet test tests\Hasher.SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
