@@ -5,5 +5,5 @@ before_build:
 build:
   verbosity: minimal
 test_script:
-- cmd: dotnet test tests\Encryptor.ClearText\EternalArrowBackup.Encryptor.ClearText.Tests.csproj
-- cmd: dotnet test tests\Hasher.SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
+- cmd: dotnet test --filter Category!=Integration tests\Encryptor.ClearText\EternalArrowBackup.Encryptor.ClearText.Tests.csproj
+- cmd: dotnet test --filter Category!=Integration tests\Hasher.SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj

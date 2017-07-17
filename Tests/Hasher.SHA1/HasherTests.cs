@@ -31,6 +31,7 @@
 
         // Single-threaded SHA1 performance on i5-6500 is around 500MB/s
         [Theory]
+        [Trait("Category", "Integration")]
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(1000)]
