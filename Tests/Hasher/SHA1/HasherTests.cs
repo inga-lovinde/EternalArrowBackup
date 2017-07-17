@@ -14,6 +14,7 @@
 
         // Test vectors taken from http://csrc.nist.gov/groups/ST/toolkit/documents/Examples/SHA_All.pdf
         [Theory]
+        [Trait("Category", "Simple")]
         [InlineData("DA39A3EE 5E6B4B0D 3255BFEF 95601890 AFD80709", "")]
         [InlineData("A9993E36 4706816A BA3E2571 7850C26C 9CD0D89D", "abc")]
         [InlineData("84983E44 1C3BD26E BAAE4AA1 F95129E5 E54670F1", "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq")]
