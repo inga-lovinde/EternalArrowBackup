@@ -16,19 +16,19 @@
             var messageBytes = Encoding.ASCII.GetBytes(message);
             var hasher = new SHA1ContentHasher();
             var encryptor = new ClearTextContentEncryptor(hasher);
-            var encrypted = await encryptor.Encrypt(messageBytes);
+            var encrypted = await encryptor.TransformData(messageBytes);
 
-            var decryptionResult = await encryptor.Decrypt(encrypted);
+            var decryptionResult = await encryptor.GetOriginalData(encrypted);
             Assert.True(decryptionResult.IsSuccessful);
             Assert.Equal(messageBytes, decryptionResult.Data);
 
             encrypted[0]++;
-            decryptionResult = await encryptor.Decrypt(encrypted);
+            decryptionResult = await encryptor.GetOriginalData(encrypted);
             Assert.False(decryptionResult.IsSuccessful);
 
             encrypted[0]--;
             encrypted[encrypted.Length - 1]--;
-            decryptionResult = await encryptor.Decrypt(encrypted);
+            decryptionResult = await encryptor.GetOriginalData(encrypted);
             Assert.False(decryptionResult.IsSuccessful);
         }
     }

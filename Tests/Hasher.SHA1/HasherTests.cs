@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.IO;
     using System.Text;
     using System.Threading.Tasks;
     using Xunit;
@@ -21,8 +22,11 @@
             var expectedHashFormatted = expectedHash.Replace(" ", string.Empty).ToLowerInvariant();
             var hasher = new SHA1ContentHasher();
             var messageBytes = Encoding.ASCII.GetBytes(inputMessage);
-            var actualHash = await hasher.ComputeHash(messageBytes);
-            Assert.Equal(expectedHashFormatted, actualHash);
+            using (var stream = new MemoryStream(messageBytes))
+            {
+                var actualHash = await hasher.ComputeHash(stream);
+                Assert.Equal(expectedHashFormatted, actualHash);
+            }
         }
 
         // Single-threaded SHA1 performance on i5-6500 is around 500MB/s
@@ -46,12 +50,16 @@
             var expectedTimeHigh = 1 + length / (MegabytesPerSecondLowSpeed * 1000);
 
             var hasher = new SHA1ContentHasher();
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-            await hasher.ComputeHash(messageBytes);
-            stopwatch.Stop();
-
-            Assert.InRange(stopwatch.ElapsedMilliseconds, expectedTimeLow, expectedTimeHigh);
+            using (var stream = new MemoryStream(messageBytes))
+            {
+                await hasher.ComputeHash(stream);
+                stream.Seek(0, SeekOrigin.Begin);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+                await hasher.ComputeHash(stream);
+                stopwatch.Stop();
+                Assert.InRange(stopwatch.ElapsedMilliseconds, expectedTimeLow, expectedTimeHigh);
+            }
         }
     }
 }

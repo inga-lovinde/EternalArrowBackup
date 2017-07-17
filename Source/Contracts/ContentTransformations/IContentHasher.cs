@@ -5,6 +5,6 @@
 
     public interface IContentHasher
     {
-        Task<string> ComputeHash(byte[] content);
+        Task<string> ComputeHash(Stream content);
     }
 }

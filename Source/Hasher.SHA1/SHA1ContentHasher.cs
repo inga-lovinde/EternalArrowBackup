@@ -1,12 +1,13 @@
 ﻿namespace EternalArrowBackup.Hasher.SHA1
 {
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Contracts.ContentTransformations;
 
     public class SHA1ContentHasher : IContentHasher
     {
-        public Task<string> ComputeHash(byte[] content)
+        public Task<string> ComputeHash(Stream content)
         {
             return Task.Run(() =>
             {

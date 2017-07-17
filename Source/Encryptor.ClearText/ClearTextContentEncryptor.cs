@@ -1,11 +1,12 @@
 ﻿namespace EternalArrowBackup.Encryptor.ClearText
 {
     using System;
+    using System.IO;
     using System.Text;
     using System.Threading.Tasks;
     using Contracts.ContentTransformations;
 
-    public class ClearTextContentEncryptor : IContentEncryptor
+    public class ClearTextContentEncryptor : IContentTransformer
     {
         public ClearTextContentEncryptor(IContentHasher hasher)
         {
@@ -14,7 +15,7 @@
 
         private IContentHasher Hasher { get; }
 
-        public async Task<IDecryptionResult> Decrypt(byte[] encryptedData)
+        public async Task<IDecryptionResult> GetOriginalData(byte[] encryptedData)
         {
             var hashLength = encryptedData[encryptedData.Length - 1];
 
@@ -25,19 +26,27 @@
             Buffer.BlockCopy(encryptedData, originalData.Length, hashBytes, 0, hashBytes.Length);
 
             var expectedHash = Encoding.UTF8.GetString(hashBytes);
-            var actualHash = await this.Hasher.ComputeHash(originalData);
-
-            if (expectedHash != actualHash)
+            using (var stream = new MemoryStream(originalData))
             {
-                return new FailedDecryptionResult();
+                var actualHash = await this.Hasher.ComputeHash(stream);
+
+                if (expectedHash != actualHash)
+                {
+                    return new FailedDecryptionResult();
+                }
             }
 
             return new SuccessfulDecryptionResult(originalData);
         }
 
-        public async Task<byte[]> Encrypt(byte[] originalData)
+        public async Task<byte[]> TransformData(byte[] originalData)
         {
-            var hash = await this.Hasher.ComputeHash(originalData);
+            string hash;
+            using (var stream = new MemoryStream(originalData))
+            {
+                hash = await this.Hasher.ComputeHash(stream);
+            }
+
             var hashBytes = Encoding.UTF8.GetBytes(hash);
             if (hashBytes.Length >= 256)
             {
