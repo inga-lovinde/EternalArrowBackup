@@ -1,8 +1,8 @@
 ﻿namespace EternalArrowBackup.SourceStorage.Contracts
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
 
     public interface ISourceDirectory
     {
@@ -10,6 +10,6 @@
 
         Task<ISourceFile> GetFile(string filename);
 
-        IObservable<ISourceFile> GetAllFiles(CancellationToken ct);
+        Task GetAllFiles(ActionBlock<ISourceFile> actionBlock, CancellationToken ct);
     }
 }
