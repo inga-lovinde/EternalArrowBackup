@@ -9,5 +9,7 @@
         Task WriteBlob(string blobId, long originalSize, string[] blockKeys);
 
         Task<IBlobInfo> GetBlobIfExists(string blobId);
+
+        Task<byte[]> RetrieveBlock(string blobId, string blockKey);
     }
 }

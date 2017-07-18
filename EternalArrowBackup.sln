@@ -47,11 +47,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContentTransformer", "Conte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hasher", "Hasher", "{0059A121-D191-48FE-9215-F71CE1057EEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EternalArrowBackup.SourceStorage.InMemorySourceStorage", "Source\SourceStorage\InMemorySourceStorage\EternalArrowBackup.SourceStorage.InMemorySourceStorage.csproj", "{B8F0A6CF-6D26-4A38-B6AF-30BB4BE17380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.SourceStorage.InMemorySourceStorage", "Source\SourceStorage\InMemorySourceStorage\EternalArrowBackup.SourceStorage.InMemorySourceStorage.csproj", "{B8F0A6CF-6D26-4A38-B6AF-30BB4BE17380}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceStorage", "SourceStorage", "{97B894EA-9FAF-4C13-A20E-00A6CC6108C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EternalArrowBackup.SourceStorage.InMemorySourceStorage.Tests", "Tests\SourceStorage\InMemorySourceStorage\EternalArrowBackup.SourceStorage.InMemorySourceStorage.Tests.csproj", "{8B5C507A-C6FE-46BA-BB4F-4876B8230E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.SourceStorage.InMemorySourceStorage.Tests", "Tests\SourceStorage\InMemorySourceStorage\EternalArrowBackup.SourceStorage.InMemorySourceStorage.Tests.csproj", "{8B5C507A-C6FE-46BA-BB4F-4876B8230E26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.TargetBinaryStorage.InMemoryBinaryStorage", "Source\TargetBinaryStorage\InMemoryBinaryStorage\EternalArrowBackup.TargetBinaryStorage.InMemoryBinaryStorage.csproj", "{12102767-6F40-4328-9CB5-290EF484682D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TargetBinaryStorage", "TargetBinaryStorage", "{61CADBF4-3D45-4980-81E5-5268199E615A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.TargetBinaryStorage.InMemoryBinaryStorage.Tests", "Tests\TargetBinaryStorage\InMemoryBinaryStorage\EternalArrowBackup.TargetBinaryStorage.InMemoryBinaryStorage.Tests.csproj", "{3D95405C-C305-4D73-9B2C-938156FD9B2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +117,14 @@ Global
 		{8B5C507A-C6FE-46BA-BB4F-4876B8230E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B5C507A-C6FE-46BA-BB4F-4876B8230E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B5C507A-C6FE-46BA-BB4F-4876B8230E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12102767-6F40-4328-9CB5-290EF484682D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12102767-6F40-4328-9CB5-290EF484682D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12102767-6F40-4328-9CB5-290EF484682D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12102767-6F40-4328-9CB5-290EF484682D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D95405C-C305-4D73-9B2C-938156FD9B2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D95405C-C305-4D73-9B2C-938156FD9B2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D95405C-C305-4D73-9B2C-938156FD9B2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D95405C-C305-4D73-9B2C-938156FD9B2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,5 +153,8 @@ Global
 		{B8F0A6CF-6D26-4A38-B6AF-30BB4BE17380} = {05426D05-AE66-4C5C-8B8E-403A46ADC49D}
 		{97B894EA-9FAF-4C13-A20E-00A6CC6108C5} = {884B8E01-303A-40CF-8884-D62115F98683}
 		{8B5C507A-C6FE-46BA-BB4F-4876B8230E26} = {97B894EA-9FAF-4C13-A20E-00A6CC6108C5}
+		{12102767-6F40-4328-9CB5-290EF484682D} = {85879329-E36C-4585-8019-2825DEB4D0B8}
+		{61CADBF4-3D45-4980-81E5-5268199E615A} = {884B8E01-303A-40CF-8884-D62115F98683}
+		{3D95405C-C305-4D73-9B2C-938156FD9B2E} = {61CADBF4-3D45-4980-81E5-5268199E615A}
 	EndGlobalSection
 EndGlobal

@@ -13,6 +13,7 @@
     public static class StorageTests
     {
         [Fact]
+        [Trait("Category", "Simple")]
         public static async Task CheckStorage()
         {
             var storageData = CreateStorageData();
