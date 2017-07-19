@@ -1,13 +1,15 @@
 ﻿namespace EternalArrowBackup.TargetMetadataStorage.Contracts
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
 
     public interface ITargetDirectory
     {
+        string DirectoryName { get; }
+
         Task UploadFile(string filename, string originalHash, long originalSize);
 
-        IObservable<ITargetFileVersion> GetAllLatestFileVersions(CancellationToken ct);
+        Task GetAllLatestFileVersions(ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
     }
 }

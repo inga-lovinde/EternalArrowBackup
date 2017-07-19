@@ -1,13 +1,15 @@
 ﻿namespace EternalArrowBackup.TargetMetadataStorage.Contracts
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
 
-    public interface ITargetMetadataStorageForRecovery
+    public interface ITargetMetadataStorageForRecovery : ITargetMetadataStorage
     {
-        IObservable<ITargetDirectory> GetAllDirectories(CancellationToken ct);
+        Task GetAllDirectories(ActionBlock<ITargetDirectory> actionBlock, CancellationToken ct);
 
         Task<ITargetFile> GetFile(string normalizedRelativeDirectoryPath, string filename);
+
+        Task GetBlobUsages(string hash, ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
     }
 }

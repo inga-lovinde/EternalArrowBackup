@@ -1,10 +1,11 @@
 ﻿namespace EternalArrowBackup.TargetMetadataStorage.Contracts
 {
-    using System;
     using System.Threading;
+    using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
 
     public interface ITargetFile
     {
-        IObservable<ITargetFileVersion> GetAllVersions(CancellationToken ct);
+        Task GetAllVersions(ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
     }
 }
