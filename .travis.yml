@@ -1,0 +1,8 @@
+language: csharp
+solution: EternalArrowBackup.sln
+mono: none
+dotnet: 1.0.3
+dist: trusty
+script:
+ - dotnet test --filter Category!=Integration tests\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.Tests.csproj
+ - dotnet test --filter Category!=Integration tests\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
