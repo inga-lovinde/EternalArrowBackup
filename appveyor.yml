@@ -2,16 +2,19 @@ version: 1.0.{build}
 image: Visual Studio 2017
 
 before_build:
-- nuget restore
-#- choco install opencover
-- choco install opencover.portable
-- choco install codecov
+ - nuget restore
+ - choco install msbuild-sonarqube-runner
+ #- choco install opencover
+ - choco install opencover.portable
+ - choco install codecov
 
-build:
-  verbosity: minimal
+build_script:
+ - MSBuild.SonarQube.Runner.exe begin /k:"EternalArrowBackup" /d:"sonar.organization=inga-lovinde-github" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=%SONAR_LOGIN%"
+ - msbuild /t:Rebuild EternalArrowBackup.sln
+ - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=%SONAR_LOGIN%"
 
 test_script:
-- dotnet build /t:Rebuild /p:DebugType=full /p:DebugSymbols=true EternalArrowBackup.sln
-- OpenCoverForProject Tests\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.Tests.csproj
-- OpenCoverForProject Tests\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
-- codecov -f OpenCover.xml
+ - dotnet build /t:Rebuild /p:DebugType=full /p:DebugSymbols=true EternalArrowBackup.sln
+ - OpenCoverForProject Tests\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.Tests.csproj
+ - OpenCoverForProject Tests\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
+ - codecov -f OpenCover.xml
