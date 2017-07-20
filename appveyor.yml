@@ -1,9 +1,17 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+
 before_build:
-- cmd: nuget restore
+- nuget restore
+#- choco install opencover
+- choco install opencover.portable
+- choco install codecov
+
 build:
   verbosity: minimal
+
 test_script:
-- cmd: dotnet test --filter Category!=Integration tests\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.Tests.csproj
-- cmd: dotnet test --filter Category!=Integration tests\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
+- dotnet build /t:Rebuild /p:DebugType=full /p:DebugSymbols=true EternalArrowBackup.sln
+- OpenCoverForProject Tests\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.Tests.csproj
+- OpenCoverForProject Tests\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
+- codecov -f OpenCover.xml
