@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TargetMetadataStorage", "Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.TargetBinaryStorage.InMemoryBinaryStorage.Tests", "Tests\TargetMetadataStorage\InMemoryMetadataStorage\EternalArrowBackup.TargetBinaryStorage.InMemoryBinaryStorage.Tests.csproj", "{A2661315-0A4E-47AA-B0D8-200E98461004}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EternalArrowBackup.ReportStorage.InMemoryReportStorage", "Source\ReportStorage\InMemoryReportStorage\EternalArrowBackup.ReportStorage.InMemoryReportStorage.csproj", "{050B524C-451C-49F6-A9E5-60E40A40CFEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,10 @@ Global
 		{A2661315-0A4E-47AA-B0D8-200E98461004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2661315-0A4E-47AA-B0D8-200E98461004}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2661315-0A4E-47AA-B0D8-200E98461004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{050B524C-451C-49F6-A9E5-60E40A40CFEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{050B524C-451C-49F6-A9E5-60E40A40CFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{050B524C-451C-49F6-A9E5-60E40A40CFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{050B524C-451C-49F6-A9E5-60E40A40CFEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,5 +179,6 @@ Global
 		{AC7EA3E8-6469-4102-940F-31EF831E823F} = {99C42B64-99CF-4FB3-B270-079476B43FF7}
 		{F22F46A0-75BD-49CB-96F2-4E230B59601A} = {884B8E01-303A-40CF-8884-D62115F98683}
 		{A2661315-0A4E-47AA-B0D8-200E98461004} = {F22F46A0-75BD-49CB-96F2-4E230B59601A}
+		{050B524C-451C-49F6-A9E5-60E40A40CFEE} = {8FA27C30-856D-4895-87AD-BE71847B76EF}
 	EndGlobalSection
 EndGlobal

@@ -8,4 +8,8 @@
     <PackageReference Include="System.Threading.Tasks.Dataflow" Version="4.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\EternalArrowBackup.ReportStorage.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

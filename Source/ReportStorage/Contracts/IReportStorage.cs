@@ -1,7 +1,8 @@
 ﻿namespace EternalArrowBackup.ReportStorage.Contracts
 {
-    using System;
+    using System.Threading;
     using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
 
     public interface IReportStorage
     {
@@ -13,6 +14,6 @@
 
         Task AddFileInfo(string reportId, string directoryPath, string fileName, string hash, long size);
 
-        IObservable<IReportInfo> GetAllReports(bool includeEmpty);
+        Task GetAllReports(ActionBlock<IReportInfo> actionBlock, bool includeEmpty, CancellationToken ct);
     }
 }

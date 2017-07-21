@@ -1,6 +1,9 @@
 ﻿namespace EternalArrowBackup.ReportStorage.Contracts
 {
     using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
 
     public interface IReportInfo
     {
@@ -14,8 +17,8 @@
 
         bool HasErrors { get; }
 
-        IObservable<string> GetAllErrors();
+        Task GetAllErrors(ActionBlock<string> actionBlock, CancellationToken ct);
 
-        IObservable<IFileInfo> GetAllFiles();
+        Task GetAllFiles(ActionBlock<IFileInfo> actionBlock, CancellationToken ct);
     }
 }
