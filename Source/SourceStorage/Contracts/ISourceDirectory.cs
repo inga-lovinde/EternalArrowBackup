@@ -10,6 +10,6 @@
 
         Task<ISourceFile> GetFile(string filename);
 
-        Task GetAllFiles(ActionBlock<ISourceFile> actionBlock, CancellationToken ct);
+        Task GetAllFiles(ITargetBlock<ISourceFile> actionBlock, CancellationToken ct);
     }
 }

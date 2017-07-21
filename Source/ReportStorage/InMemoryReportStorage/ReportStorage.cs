@@ -26,7 +26,7 @@
             return Task.Run(() => this.Reports[reportId].Complete(isEmpty, hasErrors));
         }
 
-        public Task GetAllReports(ActionBlock<IReportInfo> actionBlock, bool includeEmpty, CancellationToken ct)
+        public Task GetAllReports(ITargetBlock<IReportInfo> actionBlock, bool includeEmpty, CancellationToken ct)
         {
             return Task.Run(() =>
             {

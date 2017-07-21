@@ -10,6 +10,6 @@
 
         Task UploadFile(string filename, string originalHash, long originalSize);
 
-        Task GetAllLatestFileVersions(ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
+        Task GetAllLatestFileVersions(ITargetBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
     }
 }

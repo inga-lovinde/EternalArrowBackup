@@ -23,7 +23,7 @@
 
         private Dictionary<string, List<ITargetFileVersion>> Files { get; }
 
-        public Task GetAllLatestFileVersions(ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct)
+        public Task GetAllLatestFileVersions(ITargetBlock<ITargetFileVersion> actionBlock, CancellationToken ct)
         {
             return Task.Run(() =>
             {

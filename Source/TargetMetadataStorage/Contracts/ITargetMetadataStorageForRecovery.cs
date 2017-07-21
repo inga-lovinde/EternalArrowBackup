@@ -6,10 +6,10 @@
 
     public interface ITargetMetadataStorageForRecovery : ITargetMetadataStorage
     {
-        Task GetAllDirectories(ActionBlock<ITargetDirectory> actionBlock, CancellationToken ct);
+        Task GetAllDirectories(ITargetBlock<ITargetDirectory> actionBlock, CancellationToken ct);
 
         Task<ITargetFile> GetFile(string normalizedRelativeDirectoryPath, string filename);
 
-        Task GetBlobUsages(string hash, ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
+        Task GetBlobUsages(string hash, ITargetBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
     }
 }

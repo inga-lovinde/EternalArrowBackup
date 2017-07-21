@@ -18,7 +18,7 @@
 
         private ImmutableDictionary<string, byte[]> StorageData { get; }
 
-        public Task GetAllFiles(ActionBlock<ISourceFile> actionBlock, CancellationToken ct)
+        public Task GetAllFiles(ITargetBlock<ISourceFile> actionBlock, CancellationToken ct)
         {
             return Task.Run(() =>
             {

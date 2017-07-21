@@ -15,7 +15,7 @@
 
         private List<ITargetFileVersion> Versions { get; }
 
-        public Task GetAllVersions(ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct)
+        public Task GetAllVersions(ITargetBlock<ITargetFileVersion> actionBlock, CancellationToken ct)
         {
             return Task.Run(() =>
             {

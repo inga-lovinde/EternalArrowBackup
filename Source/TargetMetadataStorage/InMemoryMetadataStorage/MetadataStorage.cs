@@ -13,7 +13,7 @@
 
         private Dictionary<string, List<ITargetFileVersion>> BlobsInfo { get; } = new Dictionary<string, List<ITargetFileVersion>>();
 
-        public Task GetAllDirectories(ActionBlock<ITargetDirectory> actionBlock, CancellationToken ct)
+        public Task GetAllDirectories(ITargetBlock<ITargetDirectory> actionBlock, CancellationToken ct)
         {
             return Task.Run(() =>
             {
@@ -31,7 +31,7 @@
             });
         }
 
-        public Task GetBlobUsages(string hash, ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct)
+        public Task GetBlobUsages(string hash, ITargetBlock<ITargetFileVersion> actionBlock, CancellationToken ct)
         {
             return Task.Run(() =>
             {

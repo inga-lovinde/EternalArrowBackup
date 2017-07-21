@@ -14,6 +14,6 @@
 
         Task AddFileInfo(string reportId, string directoryPath, string fileName, string hash, long size);
 
-        Task GetAllReports(ActionBlock<IReportInfo> actionBlock, bool includeEmpty, CancellationToken ct);
+        Task GetAllReports(ITargetBlock<IReportInfo> actionBlock, bool includeEmpty, CancellationToken ct);
     }
 }

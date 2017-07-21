@@ -28,7 +28,7 @@
 
         private List<IFileInfo> Files { get; } = new List<IFileInfo>();
 
-        public Task GetAllErrors(ActionBlock<string> actionBlock, CancellationToken ct)
+        public Task GetAllErrors(ITargetBlock<string> actionBlock, CancellationToken ct)
         {
             return Task.Run(() =>
             {
@@ -46,7 +46,7 @@
             });
         }
 
-        public Task GetAllFiles(ActionBlock<IFileInfo> actionBlock, CancellationToken ct)
+        public Task GetAllFiles(ITargetBlock<IFileInfo> actionBlock, CancellationToken ct)
         {
             return Task.Run(() =>
             {

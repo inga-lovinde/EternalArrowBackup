@@ -8,6 +8,6 @@
     {
         Task<ISourceDirectory> GetDirectory(string normalizedRelativePath);
 
-        Task GetAllDirectories(ActionBlock<ISourceDirectory> actionBlock, CancellationToken ct);
+        Task GetAllDirectories(ITargetBlock<ISourceDirectory> actionBlock, CancellationToken ct);
     }
 }

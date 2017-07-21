@@ -6,6 +6,6 @@
 
     public interface ITargetFile
     {
-        Task GetAllVersions(ActionBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
+        Task GetAllVersions(ITargetBlock<ITargetFileVersion> actionBlock, CancellationToken ct);
     }
 }

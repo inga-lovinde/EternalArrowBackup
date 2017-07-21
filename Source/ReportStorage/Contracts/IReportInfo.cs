@@ -17,8 +17,8 @@
 
         bool HasErrors { get; }
 
-        Task GetAllErrors(ActionBlock<string> actionBlock, CancellationToken ct);
+        Task GetAllErrors(ITargetBlock<string> actionBlock, CancellationToken ct);
 
-        Task GetAllFiles(ActionBlock<IFileInfo> actionBlock, CancellationToken ct);
+        Task GetAllFiles(ITargetBlock<IFileInfo> actionBlock, CancellationToken ct);
     }
 }
