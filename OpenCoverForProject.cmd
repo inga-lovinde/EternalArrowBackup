@@ -1,1 +1,0 @@
-C:\ProgramData\chocolatey\lib\opencover.portable\tools\OpenCover.Console -register -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test --no-build --logger:trx;LogFileName=results.trx --filter Category!=Integration %*" -filter:"+[*]* -[*.Tests]*" -mergeoutput -output:OpenCover.xml -oldStyle

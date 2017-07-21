@@ -15,6 +15,5 @@ build_script:
 
 test_script:
  - dotnet build /t:Rebuild /p:DebugType=full /p:DebugSymbols=true EternalArrowBackup.sln
- - OpenCoverForProject Tests\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.Tests.csproj
- - OpenCoverForProject Tests\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj
+ - ps: Get-ChildItem *.Tests.csproj -Recurse | % {C:\ProgramData\chocolatey\lib\opencover.portable\tools\OpenCover.Console -register -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test --no-build --logger:trx;LogFileName=results.trx --filter Category!=Integration $_" -filter:"+[*]* -[*.Tests]*" -mergeoutput -output:OpenCover.xml -oldStyle}
  - codecov -f OpenCover.xml
