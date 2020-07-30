@@ -16,18 +16,12 @@
 
         private IContentHasher Hasher { get; }
 
-        public async Task<IDecryptionResult> GetOriginalData(byte[] encryptedData)
+        public async Task<IDecryptionResult> GetOriginalData(byte[] transformedData)
         {
-            var hashLength = encryptedData[encryptedData.Length - 1];
+            var dataWithSignature = DataWithSignature.FromByteArray(transformedData);
 
-            var originalData = new byte[encryptedData.Length - hashLength - 1];
-            var hashBytes = new byte[hashLength];
-
-            Buffer.BlockCopy(encryptedData, 0, originalData, 0, originalData.Length);
-            Buffer.BlockCopy(encryptedData, originalData.Length, hashBytes, 0, hashBytes.Length);
-
-            var expectedHash = Encoding.UTF8.GetString(hashBytes);
-            using (var stream = new MemoryStream(originalData))
+            var expectedHash = Encoding.UTF8.GetString(dataWithSignature.Signature);
+            using (var stream = new MemoryStream(dataWithSignature.Data))
             {
                 var actualHash = await this.Hasher.ComputeHash(stream);
 
@@ -37,7 +31,7 @@
                 }
             }
 
-            return new SuccessfulDecryptionResult(originalData);
+            return new SuccessfulDecryptionResult(dataWithSignature.Data);
         }
 
         public async Task<byte[]> TransformData(byte[] originalData)
@@ -49,16 +43,9 @@
             }
 
             var hashBytes = Encoding.UTF8.GetBytes(hash);
-            if (hashBytes.Length >= 256)
-            {
-                throw new Exception("Hash should be shorter than 256 bytes");
-            }
+            var dataWithSignature = new DataWithSignature(originalData, hashBytes);
 
-            var result = new byte[originalData.Length + hashBytes.Length + 1];
-            Buffer.BlockCopy(originalData, 0, result, 0, originalData.Length);
-            Buffer.BlockCopy(hashBytes, 0, result, originalData.Length, hashBytes.Length);
-            result[result.Length - 1] = (byte)hashBytes.Length;
-            return result;
+            return dataWithSignature.AsByteArray();
         }
 
         private class FailedDecryptionResult : IDecryptionResult

@@ -2,16 +2,16 @@
 {
     using System;
 
-    public class IBackupReport
+    public interface IBackupReport
     {
-        public long FilesUploaded { get; }
+        long FilesUploaded { get; }
 
-        public long BytesUploaded { get; }
+        long BytesUploaded { get; }
 
-        public long FilesUpdated { get; }
+        long FilesUpdated { get; }
 
-        public long FilesProcessed { get; }
+        long FilesProcessed { get; }
 
-        public Exception[] Errors { get; }
+        Exception[] Errors { get; }
     }
 }

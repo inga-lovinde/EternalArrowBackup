@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using EternalArrowBackup.Hasher.Contracts;
 
-    public class SHA1ContentHasher : IContentHasher
+    public class Sha1ContentHasher : IContentHasher
     {
         public Task<string> ComputeHash(Stream content)
         {

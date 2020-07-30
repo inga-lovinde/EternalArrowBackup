@@ -21,7 +21,7 @@
         public static async Task TestHashes(string expectedHash, string inputMessage)
         {
             var expectedHashFormatted = expectedHash.Replace(" ", string.Empty).ToLowerInvariant();
-            var hasher = new SHA1ContentHasher();
+            var hasher = new Sha1ContentHasher();
             var messageBytes = Encoding.ASCII.GetBytes(inputMessage);
             using (var stream = new MemoryStream(messageBytes))
             {
@@ -51,7 +51,7 @@
             var expectedTimeLow = length / (MegabytesPerSecondHighSpeed * 1000);
             var expectedTimeHigh = 1 + length / (MegabytesPerSecondLowSpeed * 1000);
 
-            var hasher = new SHA1ContentHasher();
+            var hasher = new Sha1ContentHasher();
             using (var stream = new MemoryStream(messageBytes))
             {
                 await hasher.ComputeHash(stream);

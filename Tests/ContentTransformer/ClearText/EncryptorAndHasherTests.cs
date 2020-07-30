@@ -15,7 +15,7 @@
         public static async Task TestCorrectDecryption(string message)
         {
             var messageBytes = Encoding.ASCII.GetBytes(message);
-            var hasher = new SHA1ContentHasher();
+            var hasher = new Sha1ContentHasher();
             var encryptor = new ClearTextContentEncryptor(hasher);
             var encrypted = await encryptor.TransformData(messageBytes);
 

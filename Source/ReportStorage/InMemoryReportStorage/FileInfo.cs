@@ -1,6 +1,5 @@
 ﻿namespace EternalArrowBackup.ReportStorage.InMemoryReportStorage
 {
-    using System;
     using EternalArrowBackup.ReportStorage.Contracts;
 
     class FileInfo : IFileInfo
