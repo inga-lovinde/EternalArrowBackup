@@ -3,17 +3,17 @@ image: Visual Studio 2019
 
 before_build:
  - nuget restore
- - choco install sonarscanner-msbuild-net46
+ - choco install sonarscanner-msbuild-netcoreapp2.0
  #- choco install opencover
  - choco install opencover.portable
  - choco install codecov
 
 build_script:
- - SonarScanner.MSBuild.exe begin /key:"EternalArrowBackup" /version:"%APPVEYOR_REPO_COMMIT%" /o:inga-lovinde-github /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=%SONAR_LOGIN%"
  - msbuild /t:Rebuild EternalArrowBackup.sln
- - SonarScanner.MSBuild.exe end /d:"sonar.login=%SONAR_LOGIN%"
 
 test_script:
+ - dotnet "C:\ProgramData\chocolatey\lib\sonarscanner-msbuild-netcoreapp2.0\tools\SonarScanner.MSBuild.dll" begin /key:"EternalArrowBackup" /version:"%APPVEYOR_REPO_COMMIT%" /o:inga-lovinde-github /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%SONAR_LOGIN%" /d:sonar.cs.opencover.reportsPaths="OpenCover.xml"
  - dotnet build /t:Rebuild /p:DebugType=full /p:DebugSymbols=true EternalArrowBackup.sln
  - ps: Get-ChildItem *.Tests.csproj -Recurse | % {C:\ProgramData\chocolatey\lib\opencover.portable\tools\OpenCover.Console -register -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test --no-build --logger:trx;LogFileName=results.trx --filter Category!=Integration $_" -filter:"+[*]* -[*.Tests]*" -showunvisited -mergeoutput -output:OpenCover.xml -oldStyle}
+ - dotnet "C:\ProgramData\chocolatey\lib\sonarscanner-msbuild-netcoreapp2.0\tools\SonarScanner.MSBuild.dll" end /d:sonar.login="%SONAR_LOGIN%"
  - codecov -f OpenCover.xml
