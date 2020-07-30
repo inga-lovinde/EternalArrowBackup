@@ -3,15 +3,15 @@ image: Visual Studio 2019
 
 before_build:
  - nuget restore
- - choco install msbuild-sonarqube-runner
+ - choco install sonarscanner-msbuild-net46
  #- choco install opencover
  - choco install opencover.portable
  - choco install codecov
 
 build_script:
- - MSBuild.SonarQube.Runner.exe begin /key:"EternalArrowBackup" /version:"%APPVEYOR_REPO_COMMIT%" /o:inga-lovinde-github /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=%SONAR_LOGIN%"
+ - SonarScanner.MSBuild.exe begin /key:"EternalArrowBackup" /version:"%APPVEYOR_REPO_COMMIT%" /o:inga-lovinde-github /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=%SONAR_LOGIN%"
  - msbuild /t:Rebuild EternalArrowBackup.sln
- - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=%SONAR_LOGIN%"
+ - SonarScanner.MSBuild.exe end /d:"sonar.login=%SONAR_LOGIN%"
 
 test_script:
  - dotnet build /t:Rebuild /p:DebugType=full /p:DebugSymbols=true EternalArrowBackup.sln
