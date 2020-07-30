@@ -1,5 +1,6 @@
 ﻿namespace EternalArrowBackup.ContentTransformer.ClearText.Tests
 {
+    using System;
     using System.Text;
     using System.Threading.Tasks;
     using EternalArrowBackup.Hasher.Sha256;
@@ -26,11 +27,13 @@
             encrypted[0]++;
             decryptionResult = await encryptor.GetOriginalData(encrypted);
             Assert.False(decryptionResult.IsSuccessful);
+            Assert.Throws<NotImplementedException>(() => decryptionResult.Data);
 
             encrypted[0]--;
             encrypted[encrypted.Length - 1]--;
             decryptionResult = await encryptor.GetOriginalData(encrypted);
             Assert.False(decryptionResult.IsSuccessful);
+            Assert.Throws<NotImplementedException>(() => decryptionResult.Data);
         }
     }
 }

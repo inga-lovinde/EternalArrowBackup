@@ -9,7 +9,7 @@
     {
         private Dictionary<string, IBlobInfo> Blobs { get; } = new Dictionary<string, IBlobInfo>();
 
-        private Dictionary<BlockId, BlockInfo> Blocks { get; } = new Dictionary<BlockId, BlockInfo>();
+        private Dictionary<BlockId, byte[]> Blocks { get; } = new Dictionary<BlockId, byte[]>();
 
         public Task<IBlobInfo> GetBlobIfExists(string blobId)
         {
@@ -33,13 +33,13 @@
         {
             return Task.Run(() =>
             {
-                this.Blocks[new BlockId(blobId, blockKey)] = new BlockInfo(blobId, partNumber, blockKey, block);
+                this.Blocks[new BlockId(blobId, blockKey)] = block;
             });
         }
 
         public Task<byte[]> RetrieveBlock(string blobId, string blockKey)
         {
-            return Task.Run(() => this.Blocks[new BlockId(blobId, blockKey)].BlockData);
+            return Task.Run(() => this.Blocks[new BlockId(blobId, blockKey)]);
         }
     }
 }
