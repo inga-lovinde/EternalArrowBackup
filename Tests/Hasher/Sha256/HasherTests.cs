@@ -1,4 +1,4 @@
-﻿namespace EternalArrowBackup.Hasher.SHA1
+﻿namespace EternalArrowBackup.Hasher.Sha256
 {
     using System;
     using System.Diagnostics;
@@ -9,19 +9,20 @@
 
     public static class HasherTests
     {
-        private const int MegabytesPerSecondLowSpeed = 200;
-        private const int MegabytesPerSecondHighSpeed = 1000;
+        // Single-threaded SHA256 performance on modern CPUs is around 200-500MB/s
+        private const int MegabytesPerSecondLowSpeed = 20;
+        private const int MegabytesPerSecondHighSpeed = 5000;
 
         // Test vectors taken from http://csrc.nist.gov/groups/ST/toolkit/documents/Examples/SHA_All.pdf
         [Theory]
         [Trait("Category", "Simple")]
-        [InlineData("DA39A3EE 5E6B4B0D 3255BFEF 95601890 AFD80709", "")]
-        [InlineData("A9993E36 4706816A BA3E2571 7850C26C 9CD0D89D", "abc")]
-        [InlineData("84983E44 1C3BD26E BAAE4AA1 F95129E5 E54670F1", "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq")]
+        [InlineData("E3B0C442 98FC1C14 9AFBF4C8 996FB924 27AE41E4 649B934C A495991B 7852B855", "")]
+        [InlineData("BA7816BF 8F01CFEA 414140DE 5DAE2223 B00361A3 96177A9C B410FF61 F20015AD", "abc")]
+        [InlineData("248D6A61 D20638B8 E5C02693 0C3E6039 A33CE459 64FF2167 F6ECEDD4 19DB06C1", "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq")]
         public static async Task TestHashes(string expectedHash, string inputMessage)
         {
             var expectedHashFormatted = expectedHash.Replace(" ", string.Empty).ToLowerInvariant();
-            var hasher = new Sha1ContentHasher();
+            var hasher = new Sha256ContentHasher();
             var messageBytes = Encoding.ASCII.GetBytes(inputMessage);
             using (var stream = new MemoryStream(messageBytes))
             {
@@ -30,7 +31,6 @@
             }
         }
 
-        // Single-threaded SHA1 performance on i5-6500 is around 500MB/s
         [Theory]
         [Trait("Category", "Integration")]
         [InlineData(0)]
@@ -45,13 +45,13 @@
             var messageBytes = new byte[length];
             for (var i = 0; i < length; i++)
             {
-                messageBytes[i] = (byte)((int)(Math.E * length + Math.PI * i) % 256);
+                messageBytes[i] = (byte)((int)(Math.E * i * i + Math.PI * i) % 256);
             }
 
             var expectedTimeLow = length / (MegabytesPerSecondHighSpeed * 1000);
             var expectedTimeHigh = 1 + length / (MegabytesPerSecondLowSpeed * 1000);
 
-            var hasher = new Sha1ContentHasher();
+            var hasher = new Sha256ContentHasher();
             using (var stream = new MemoryStream(messageBytes))
             {
                 await hasher.ComputeHash(stream);

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Source\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.csproj" />
+    <ProjectReference Include="..\..\..\Source\Hasher\Sha256\EternalArrowBackup.Hasher.Sha256.csproj" />
   </ItemGroup>
 
   <ItemGroup>

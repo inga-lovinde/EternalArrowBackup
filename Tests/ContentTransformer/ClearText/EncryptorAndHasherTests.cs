@@ -2,7 +2,7 @@
 {
     using System.Text;
     using System.Threading.Tasks;
-    using EternalArrowBackup.Hasher.SHA1;
+    using EternalArrowBackup.Hasher.Sha256;
     using Xunit;
 
     public static class EncryptorAndHasherTests
@@ -15,7 +15,7 @@
         public static async Task TestCorrectDecryption(string message)
         {
             var messageBytes = Encoding.ASCII.GetBytes(message);
-            var hasher = new Sha1ContentHasher();
+            var hasher = new Sha256ContentHasher();
             var encryptor = new ClearTextContentEncryptor(hasher);
             var encrypted = await encryptor.TransformData(messageBytes);
 

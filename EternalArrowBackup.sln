@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A79A48
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{884B8E01-303A-40CF-8884-D62115F98683}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Hasher.SHA1", "Source\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.csproj", "{623151DA-A4E0-4A7F-B600-A51ABCDE7038}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Hasher.Sha256", "Source\Hasher\Sha256\EternalArrowBackup.Hasher.Sha256.csproj", "{623151DA-A4E0-4A7F-B600-A51ABCDE7038}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.ContentTransformer.ClearText", "Source\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.csproj", "{E8D0BBF5-8DA6-49FA-AC86-9F766C203D99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Hasher.SHA1.Tests", "Tests\Hasher\SHA1\EternalArrowBackup.Hasher.SHA1.Tests.csproj", "{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.Hasher.Sha256.Tests", "Tests\Hasher\Sha256\EternalArrowBackup.Hasher.Sha256.Tests.csproj", "{92AF4CAA-64AF-4A43-A637-CD10FFEB2FEC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EternalArrowBackup.ContentTransformer.ClearText.Tests", "Tests\ContentTransformer\ClearText\EternalArrowBackup.ContentTransformer.ClearText.Tests.csproj", "{0F91FC45-54B3-4BC0-BB3D-83E963EBD00D}"
 EndProject
